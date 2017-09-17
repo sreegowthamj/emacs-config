@@ -13,7 +13,9 @@
 * Adding Melpa 
 #+BEGIN_SRC emacs-lisp
 (require 'package)
+(package-initialize)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;;(package-refresh-contents)
 #+END_SRC
 * Google Style
 #+BEGIN_SRC emacs-lisp
@@ -39,7 +41,7 @@
 * Helm Integration
 #+BEGIN_SRC emacs-lisp
 ;; SOURCE - http://syamajala.github.io/c-ide.html
-(require 'rtags-helm)
+(require 'helm-rtags)
 (setq rtags-use-helm t)
 #+END_SRC
 * cmake-ide integration
@@ -131,27 +133,6 @@
 
 * COMMENT add the following to  .dir-locals.el
 #+BEGIN_SRC emacs-lisp
-((nil . ((cmake-ide-build-dir . "<PATH_TO_PROJECT_BUILD_DIRECTORY>"))))
+;;((nil . ((cmake-ide-build-dir . "<PATH_TO_PROJECT_BUILD_DIRECTORY>"))))
 
 #+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-
-#+BEGIN_SRC emacs-lisp
-
-#+END_SRC
-
-  
