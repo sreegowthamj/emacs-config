@@ -1,7 +1,3 @@
-* COMMENT Turn off menu bar
-#+BEGIN_SRC emacs-lisp
-  (menu-bar-mode -1)
-#+END_SRC
 * AUCTex Config
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
@@ -23,3 +19,139 @@
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 #+END_SRC
+* RTAGS Integration
+#+BEGIN_SRC emacs-lisp
+;; SOURCE - http://syamajala.github.io/c-ide.html
+(require 'rtags)
+(require 'company-rtags)
+
+(setq rtags-completions-enabled t)
+(eval-after-load 'company
+  '(add-to-list
+    'company-backends 'company-rtags))
+(setq rtags-autostart-diagnostics t)
+(rtags-enable-standard-keybindings)
+#+END_SRC
+
+#+RESULTS:
+: rtags-location-stack-visualize
+
+* Helm Integration
+#+BEGIN_SRC emacs-lisp
+;; SOURCE - http://syamajala.github.io/c-ide.html
+(require 'rtags-helm)
+(setq rtags-use-helm t)
+#+END_SRC
+* cmake-ide integration
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+* irony-mode integration
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
+
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+#+END_SRC
+
+#+RESULTS:
+| irony-cdb-autosetup-compile-options | my-irony-mode-hook |
+
+* company-irony
+#+BEGIN_SRC emacs-lisp
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+(setq company-backends (delete 'company-semantic company-backends))
+(require 'company-irony-c-headers)
+(eval-after-load 'company
+  '(add-to-list
+    'company-backends '(company-irony-c-headers company-irony)))
+#+END_SRC
+
+#+RESULTS:
+| (company-irony-c-headers company-irony) | company-rtags | company-bbdb | company-nxml | company-css | company-eclim | company-clang | company-xcode | company-cmake | company-capf | company-files | (company-dabbrev-code company-gtags company-etags company-keywords) | company-oddmuse | company-dabbrev |
+
+* company-irony TAB completion
+#+BEGIN_SRC emacs-lisp
+(setq company-idle-delay 0)
+(define-key c-mode-map [(tab)] 'company-complete)
+(define-key c++-mode-map [(tab)] 'company-complete)
+#+END_SRC
+
+#+RESULTS:
+: company-complete
+
+* Flycheck - syntax checking
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c++-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'flycheck-mode)
+#+END_SRC
+
+#+RESULTS:
+| flycheck-mode | irony-mode | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) |
+
+* Integrating rtags with flycheck
+#+BEGIN_SRC emacs-lisp
+(require 'flycheck-rtags)
+(defun my-flycheck-rtags-setup ()
+  (flycheck-select-checker 'rtags)
+  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+  (setq-local flycheck-check-syntax-automatically nil))
+;; c-mode-common-hook is also called by c++-mode
+(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+#+END_SRC
+
+#+RESULTS:
+| my-flycheck-rtags-setup | google-set-c-style |
+
+* Integrating irony with flycheck
+#+BEGIN_SRC emacs-lisp
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+#+END_SRC
+
+#+RESULTS:
+| flycheck-irony-setup | flycheck-mode-set-explicitly |
+
+* CMake automation with cmake-ide
+#+BEGIN_SRC emacs-lisp
+(cmake-ide-setup)
+#+END_SRC
+
+#+RESULTS:
+| cmake-ide--before-save |
+
+* COMMENT add the following to  .dir-locals.el
+#+BEGIN_SRC emacs-lisp
+((nil . ((cmake-ide-build-dir . "<PATH_TO_PROJECT_BUILD_DIRECTORY>"))))
+
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+  
