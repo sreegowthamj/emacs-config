@@ -68,19 +68,15 @@
 #+RESULTS:
 | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
 
-* company-irony
+* initialising company
 #+BEGIN_SRC emacs-lisp
-(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-(setq company-backends (delete 'company-semantic company-backends))
-(require 'company-irony-c-headers)
-(eval-after-load 'company
-  '(add-to-list
-    'company-backends '(company-irony-c-headers company-irony)))
+(add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
 
 #+RESULTS:
-| (company-irony-c-headers company-irony) | company-rtags | company-bbdb | company-nxml | company-css | company-eclim | company-clang | company-xcode | company-cmake | company-capf | company-files | (company-dabbrev-code company-gtags company-etags company-keywords) | company-oddmuse | company-dabbrev |
+| global-company-mode | x-wm-set-size-hint | debian-ispell-set-default-dictionary | debian-ispell-set-startup-menu |
 
+* company-irony
 * company-irony TAB completion
 #+BEGIN_SRC emacs-lisp
 (setq company-idle-delay 0)
