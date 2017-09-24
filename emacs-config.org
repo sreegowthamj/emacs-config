@@ -19,7 +19,7 @@
 #+END_SRC
 * Google Style
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c-mode-common-hook 'google-set-c-style)
+;;(add-hook 'c-mode-common-hook 'google-set-c-style)
 #+END_SRC
 * RTAGS Integration
 #+BEGIN_SRC emacs-lisp
@@ -46,7 +46,7 @@
 #+END_SRC
 * cmake-ide integration
 #+BEGIN_SRC emacs-lisp
-
+(cmake-ide-setup)
 #+END_SRC
 
 * irony-mode integration
@@ -133,6 +133,5 @@
 
 * COMMENT add the following to  .dir-locals.el
 #+BEGIN_SRC emacs-lisp
-;;((nil . ((cmake-ide-build-dir . "<PATH_TO_PROJECT_BUILD_DIRECTORY>"))))
-
+;;
 #+END_SRC
