@@ -60,7 +60,7 @@
 	      ))))
       (with-temp-file output-file
 	;; Thanks for http://irreal.org/blog/?p=6236 and https://github.com/marcowahl/.emacs.d/blob/master/init.org for the read-only-trick:
-        (insert ";; emacs-config.el --- This is the GNU/Emacs config file of Karl Voit. -*- eval: (read-only-mode 1) -*-\n")
+        (insert ";; emacs-config.el --- This is the GNU/Emacs config file of Sree Gowtham J. -*- eval: (read-only-mode 1) -*-\n")
         (insert ";; ======================================================================================\n")
         (insert ";; Don't edit this file, edit emacs-config.org' instead ...\n")
         (insert ";; ======================================================================================\n\n")
