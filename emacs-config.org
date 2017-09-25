@@ -127,7 +127,7 @@
 #+RESULTS:
 | cmake-ide--before-save |
 
-* COMMENT add the following to  .dir-locals.el
+* Adding monokai (similar to sublime)
 #+BEGIN_SRC emacs-lisp
-;;
+(load-theme 'monokai-alt t)
 #+END_SRC
