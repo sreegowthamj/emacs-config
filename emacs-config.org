@@ -10,6 +10,10 @@
 (setq reftex-plug-into-AUCTeX t)
 (setq TeX-PDF-mode t)
 #+END_SRC
+
+#+RESULTS:
+: t
+
 * Adding Melpa 
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -17,6 +21,9 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;;(package-refresh-contents)
 #+END_SRC
+
+#+RESULTS:
+
 * Google Style
 #+BEGIN_SRC emacs-lisp
 ;;(add-hook 'c-mode-common-hook 'google-set-c-style)
@@ -130,4 +137,38 @@
 * Adding monokai (similar to sublime)
 #+BEGIN_SRC emacs-lisp
 (load-theme 'monokai-alt t)
+#+END_SRC
+* Projectile
+#+BEGIN_SRC emacs-lisp 
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+#+END_SRC
+* Projectile with speedbar
+#+BEGIN_SRC emacs-lisp 
+(require 'projectile-speedbar)
+#+END_SRC
+* Neotree project browser
+#+BEGIN_SRC emacs-lisp 
+(require 'neotree)
+#+END_SRC
+* Neotree Projectile Integration
+#+BEGIN_SRC emacs-lisp
+  (defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+ (global-set-key [f8] 'neotree-project-dir)
+#+END_SRC
+* Smart mode-line
+#+BEGIN_SRC emacs-lisp 
+(add-hook 'after-init-hook 'sml/setup)
 #+END_SRC
