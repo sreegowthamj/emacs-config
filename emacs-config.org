@@ -26,7 +26,7 @@
 
 * Google Style
 #+BEGIN_SRC emacs-lisp
-;;(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
 #+END_SRC
 * RTAGS Integration
 #+BEGIN_SRC emacs-lisp
@@ -95,7 +95,18 @@
 
 * Flycheck - syntax checking
 #+BEGIN_SRC emacs-lisp
-(add-hook 'c++-mode-hook 'flycheck-mode)
+;; source - http://nilsdeppe.com/posts/emacs-c++-ide
+;; Require flycheck to be present
+(require 'flycheck)
+;; Force flycheck to always use c++11 support. We use
+;; the clang language backend so this is set to clang
+(add-hook 'c++-mode-hook
+          (lambda () (setq flycheck-clang-language-standard "c++11")))
+;; Turn flycheck on everywhere
+(global-flycheck-mode)
+
+;; Use flycheck-pyflakes for python. Seems to work a little better.
+;; (require 'flycheck-pyflakes)
 (add-hook 'c-mode-hook 'flycheck-mode)
 #+END_SRC
 
@@ -136,7 +147,7 @@
 * Adding monokai (similar to sublime)
 #+BEGIN_SRC emacs-lisp
 (load-theme 'monokai-alt t)
-#+END_SRC
+#+END_SRC 
 * Projectile
 #+BEGIN_SRC emacs-lisp 
 (projectile-global-mode)
@@ -192,4 +203,43 @@
 ;; fudged from https://github.com/atilaneves/cmake-ide/issues/59
 (setq cmake-ide-header-search-other-file nil)
 (setq cmake-ide-header-search-first-including nil)
+#+END_SRC
+* Golden Ratio enabling
+#+BEGIN_SRC emacs-lisp
+(require 'golden-ratio)
+
+(add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+(add-to-list 'golden-ratio-exclude-modes "helm-mode")
+(add-to-list 'golden-ratio-exclude-modes "dired-mode")
+(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+
+(defun pl/helm-alive-p ()
+  (if (boundp 'helm-alive-p)
+      (symbol-value 'helm-alive-p)))
+
+;; do not enable golden-raio in thses modes
+(setq golden-ratio-exclude-modes '("ediff-mode"
+                                   "gud-mode"
+                                   "gdb-locals-mode"
+                                   "gdb-registers-mode"
+                                   "gdb-breakpoints-mode"
+                                   "gdb-threads-mode"
+                                   "gdb-frames-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gud-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gdb-disassembly-mode"
+                                   "gdb-memory-mode"
+                                   "magit-log-mode"
+                                   "magit-reflog-mode"
+                                   "magit-status-mode"
+                                   "IELM"
+                                   "eshell-mode" "dired-mode"))
+
+(golden-ratio-mode)
+#+END_SRC
+* helm-projectile integration
+#+BEGIN_SRC emacs-lisp
+(require 'helm-projectile)
+(helm-projectile-on)
 #+END_SRC
