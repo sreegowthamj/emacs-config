@@ -83,7 +83,6 @@
 #+RESULTS:
 | global-company-mode | x-wm-set-size-hint | debian-ispell-set-default-dictionary | debian-ispell-set-startup-menu |
 
-* company-irony
 * company-irony TAB completion
 #+BEGIN_SRC emacs-lisp
 (setq company-idle-delay 0)
@@ -171,4 +170,26 @@
 * Smart mode-line
 #+BEGIN_SRC emacs-lisp 
 (add-hook 'after-init-hook 'sml/setup)
+#+END_SRC
+* magit keyboard shortcuts
+#+BEGIN_SRC emacs-lisp 
+(global-set-key (kbd "M-g M-s") 'magit-status)
+(global-set-key (kbd "M-g M-c") 'magit-checkout)
+#+END_SRC
+* cmake-ide shortcuts
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-c m") 'cmake-ide-compile)
+#+END_SRC
+* rtags Diagnostics
+#+BEGIN_SRC emacs-lisp
+(setq rtags-autostart-diagnostics t)
+(rtags-diagnostics)
+(setq rtags-completions-enabled t)
+(rtags-enable-standard-keybindings)
+#+END_SRC
+* make opening headers fast 
+#+BEGIN_SRC emacs-lisp
+;; fudged from https://github.com/atilaneves/cmake-ide/issues/59
+(setq cmake-ide-header-search-other-file nil)
+(setq cmake-ide-header-search-first-including nil)
 #+END_SRC
