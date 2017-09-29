@@ -24,10 +24,6 @@
 
 #+RESULTS:
 
-* Google Style
-#+BEGIN_SRC emacs-lisp
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-#+END_SRC
 * RTAGS Integration
 #+BEGIN_SRC emacs-lisp
 ;; SOURCE - http://syamajala.github.io/c-ide.html
@@ -242,4 +238,60 @@
 #+BEGIN_SRC emacs-lisp
 (require 'helm-projectile)
 (helm-projectile-on)
+#+END_SRC
+* Google Style guide integration
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+#+END_SRC
+* Google Style Guide flymake integration
+#+BEGIN_SRC emacs-lisp
+(require 'flymake-google-cpplint)
+(add-hook 'c++-mode-hook 'flymake-google-cpplint-load)
+#+END_SRC
+* flymake cpp check integration
+#+BEGIN_SRC emacs-lisp
+(require 'flymake-cppcheck)
+(add-hook 'c-mode-hook 'flymake-cppcheck-load)
+(add-hook 'c++-mode-hook 'flymake-cppcheck-load)
+#+END_SRC
+* Emacs CMake project mode
+#+BEGIN_SRC emacs-lisp
+;; for integration with emacs build system
+(require 'cmake-project)
+(defun maybe-cmake-project-hook ()
+  (if (file-exists-p "CMakeLists.txt") (cmake-project-mode)))
+(add-hook 'c-mode-hook 'maybe-cmake-project-hook)
+(add-hook 'c++-mode-hook 'maybe-cmake-project-hook)
+#+END_SRC
+* CMake mode for emacs
+#+BEGIN_SRC emacs-lisp
+;; CMake syntax highlighting
+ (setq load-path (cons (expand-file-name "/dir/with/cmake-mode") load-path))
+ (require 'cmake-mode)
+#+END_SRC
+* NOT WORKING Copy while line to paste in next
+#+BEGIN_SRC emacs-lisp
+;; Source https://www.emacswiki.org/emacs/CopyingWholeLines
+(defun quick-copy-line ()
+      "Copy the whole line that point is on and move to the beginning of the next line.
+    Consecutive calls to this command append each line to the
+    kill-ring."
+      (interactive)
+      (let ((beg (line-beginning-position 1))
+            (end (line-beginning-position 2)))
+        (if (eq last-command 'quick-copy-line)
+            (kill-append (buffer-substring beg end) (< end beg))
+          (kill-new (buffer-substring beg end))))
+      (beginning-of-line 2))
+(global-set-key (kbd "C-x C-g C-p") 'next-line)
+#+END_SRC
+* Org-mode latex integration
+#+BEGIN_SRC emacs-lisp 
+(require 'org-latex)
+(unless (boundp 'org-export-latex-classes)
+  (setq org-export-latex-classes nil))
+(add-to-list 'org-export-latex-classes
+             '("article"
+               "\\documentclass{article}"
+               ("\\section{%s}" . "\\section*{%s}")))
 #+END_SRC
