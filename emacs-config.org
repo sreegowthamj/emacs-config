@@ -188,10 +188,10 @@
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-c m") 'cmake-ide-compile)
 #+END_SRC
-* rtags Diagnostics
+* rtags Config & Diagnostics disabled
 #+BEGIN_SRC emacs-lisp
-(setq rtags-autostart-diagnostics t)
-(rtags-diagnostics)
+;;(setq rtags-autostart-diagnostics t)
+;;(rtags-diagnostics)
 (setq rtags-completions-enabled t)
 (rtags-enable-standard-keybindings)
 #+END_SRC
@@ -335,5 +335,9 @@
          ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
          ("\\paragraph{%s}" . "\\paragraph*{%s}")
          ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+#+END_SRC
+* Initial buffer choice
+#+BEGIN_SRC emacs-lisp
 
 #+END_SRC
