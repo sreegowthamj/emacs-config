@@ -349,7 +349,7 @@
 #+END_SRC
 * helm-ros
 #+BEGIN_SRC emacs-lisp
-require 'helm-ros
+(require 'helm-ros)
 #+END_SRC
 * smart-mode-line with powerline theme
 #+BEGIN_SRC emacs-lisp
