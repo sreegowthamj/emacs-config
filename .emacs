@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (message "—————• Custom Variables initialisation")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -7,7 +14,13 @@
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(initial-buffer-choice "~/todo/todo.org")
+ '(magit-diff-arguments (quote ("--no-ext-diff" "--stat")))
+ '(package-selected-packages
+   (quote
+    (helm-ros smart-mode-line projectile-speedbar neotree monokai-alt-theme magit kooten-theme helm-rtags helm-projectile helm-flymake google-c-style golden-ratio flymake-google-cpplint flymake-cppcheck flycheck-rtags flycheck-irony company-shell company-rtags company-irony-c-headers company-irony company-c-headers cmake-project cmake-ide auctex afternoon-theme))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
