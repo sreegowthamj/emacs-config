@@ -175,10 +175,6 @@
         (message "Could not find git project root."))))
  (global-set-key [f8] 'neotree-project-dir)
 #+END_SRC
-* Smart mode-line
-#+BEGIN_SRC emacs-lisp 
-(add-hook 'after-init-hook 'sml/setup)
-#+END_SRC
 * magit keyboard shortcuts
 #+BEGIN_SRC emacs-lisp 
 (global-set-key (kbd "M-g M-s") 'magit-status)

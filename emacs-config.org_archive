@@ -1,0 +1,15 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/sgj/.emacs.d/emacs-config/emacs-config.org
+
+
+* Smart mode-line
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-01-16 Tue 09:48
+  :ARCHIVE_FILE: ~/.emacs.d/emacs-config/emacs-config.org
+  :ARCHIVE_CATEGORY: emacs-config
+  :END:
+#+BEGIN_SRC emacs-lisp 
+(add-hook 'after-init-hook 'sml/setup)
+#+END_SRC
