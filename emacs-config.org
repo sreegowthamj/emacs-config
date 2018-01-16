@@ -375,3 +375,7 @@
 #+BEGIN_SRC emacs-lisp
  (require 'icicles)
 #+END_SRC
+* Disable tooolbar
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+#+END_SRC
