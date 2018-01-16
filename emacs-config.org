@@ -379,7 +379,7 @@
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 #+END_SRC
-* multiple-cursors 
+* multiple-cursors
 #+BEGIN_SRC emacs-lisp
 (require 'multiple-cursors)
 ;; When you have an active region that spans multiple lines, 
