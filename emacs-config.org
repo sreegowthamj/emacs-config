@@ -337,6 +337,11 @@
 #+BEGIN_SRC emacs-lisp
 
 #+END_SRC
+* yasnippet config
+#+BEGIN_SRC emacs-lisp
+(require 'yasnippet)
+(yas-global-mode 1)
+#+END_SRC
 * rosemacs
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "/opt/ros/lunar/share/emacs/site-lisp")
