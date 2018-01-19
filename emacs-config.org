@@ -360,6 +360,7 @@
 * Anaconda-mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 (eval-after-load "company"
  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
 #+END_SRC
@@ -387,4 +388,22 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+#+END_SRC
+* python-flycheck
+#+BEGIN_SRC emacs-lisp
+(global-flycheck-mode 1)
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+#+END_SRC
+* pyflakes
+#+BEGIN_SRC emacs-lisp
+(require 'flycheck-pyflakes)
+(add-hook 'python-mode-hook 'flycheck-mode)
+;; disable other checkers
+(add-to-list 'flycheck-disabled-checkers 'python-flake8)
+(add-to-list 'flycheck-disabled-checkers 'python-pylint)
+#+END_SRC
+* pyenv-mode
+#+BEGIN_SRC emacs-lisp
+(pyenv-mode)
 #+END_SRC
