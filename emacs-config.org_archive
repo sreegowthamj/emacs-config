@@ -13,3 +13,30 @@ Archived entries from file /home/sgj/.emacs.d/emacs-config/emacs-config.org
 #+BEGIN_SRC emacs-lisp 
 (add-hook 'after-init-hook 'sml/setup)
 #+END_SRC
+
+* python-flycheck
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-01-18 Thu 23:27
+  :ARCHIVE_FILE: ~/.emacs.d/emacs-config/emacs-config.org
+  :ARCHIVE_CATEGORY: emacs-config
+  :END:
+#+BEGIN_SRC emacs-lisp
+(require 'flycheck)
+(global-flycheck-mode 1)
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+#+END_SRC
+
+#+RESULTS:
+| flycheck-pycheckers-setup | flycheck-irony-setup | flycheck-mode-set-explicitly |
+
+
+* helm-ros
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-01-19 Fri 10:37
+  :ARCHIVE_FILE: ~/.emacs.d/emacs-config/emacs-config.org
+  :ARCHIVE_CATEGORY: emacs-config
+  :END:
+#+BEGIN_SRC emacs-lisp
+(require 'helm-ros)
+#+END_SRC

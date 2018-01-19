@@ -343,10 +343,6 @@
 ;; or whatever your install space is + "/share/emacs/site-lisp"
 (require 'rosemacs-config)
 #+END_SRC
-* helm-ros
-#+BEGIN_SRC emacs-lisp
-(require 'helm-ros)
-#+END_SRC
 * smart-mode-line with powerline theme
 #+BEGIN_SRC emacs-lisp
 ;; These two lines are just examples
@@ -357,6 +353,10 @@
 (setq sml/theme 'powerline)
 (sml/setup)
 #+END_SRC
+
+#+RESULTS:
+: t
+
 * Anaconda-mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'python-mode-hook 'anaconda-mode)
@@ -364,18 +364,33 @@
 (eval-after-load "company"
  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
 #+END_SRC
+
+#+RESULTS:
+| (company-anaconda :with company-capf) | company-rtags | company-bbdb | company-nxml | company-css | company-eclim | company-semantic | company-clang | company-xcode | company-cmake | company-capf | company-files | (company-dabbrev-code company-gtags company-etags company-keywords) | company-oddmuse | company-dabbrev |
+
 * Buffer Selection
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x C-b") 'bs-show)
 #+END_SRC
+
+#+RESULTS:
+: bs-show
+
 * icicles
 #+BEGIN_SRC emacs-lisp
  (require 'icicles)
 #+END_SRC
+
+#+RESULTS:
+: icicles
+
 * Disable tooolbar
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 #+END_SRC
+
+#+RESULTS:
+
 * multiple-cursors
 #+BEGIN_SRC emacs-lisp
 (require 'multiple-cursors)
@@ -387,13 +402,6 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-#+END_SRC
-* python-flycheck
-#+BEGIN_SRC emacs-lisp
-(global-flycheck-mode 1)
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
 #+END_SRC
 * pyflakes
 #+BEGIN_SRC emacs-lisp
@@ -403,7 +411,26 @@
 (add-to-list 'flycheck-disabled-checkers 'python-flake8)
 (add-to-list 'flycheck-disabled-checkers 'python-pylint)
 #+END_SRC
+
+#+RESULTS:
+| python-pylint | python-flake8 |
+
 * pyenv-mode
 #+BEGIN_SRC emacs-lisp
 (pyenv-mode)
 #+END_SRC
+
+#+RESULTS:
+: t
+
+* elpy config
+#+BEGIN_SRC emacs-lisp
+(when (require 'elpy nil t)
+  (elpy-enable))
+(setq elpy-rpc-backend "jedi")
+
+#+END_SRC
+
+#+RESULTS:
+: jedi
+
