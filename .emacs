@@ -1,3 +1,5 @@
+;; Original Author - Karl Voit
+;; link - https://github.com/novoid/dot-emacs/blob/master/init.el
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -19,7 +21,7 @@
  '(magit-diff-arguments (quote ("--no-ext-diff" "--stat")))
  '(package-selected-packages
    (quote
-    (multiple-cursors icicles company-anaconda anaconda-mode helm-ros smart-mode-line projectile-speedbar neotree monokai-alt-theme magit kooten-theme helm-rtags helm-projectile helm-flymake google-c-style golden-ratio flymake-google-cpplint flymake-cppcheck flycheck-rtags flycheck-irony company-shell company-rtags company-irony-c-headers company-irony company-c-headers cmake-project cmake-ide auctex afternoon-theme))))
+    (yasnippet-snippets multiple-cursors icicles company-anaconda anaconda-mode helm-ros smart-mode-line projectile-speedbar neotree monokai-alt-theme magit kooten-theme helm-rtags helm-projectile helm-flymake google-c-style golden-ratio flymake-google-cpplint flymake-cppcheck flycheck-rtags flycheck-irony company-shell company-rtags company-irony-c-headers company-irony company-c-headers cmake-project cmake-ide auctex afternoon-theme))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
