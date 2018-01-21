@@ -439,3 +439,11 @@
 #+RESULTS:
 : jedi
 
+* F6 to load emacs-config.org file
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/emacs-config/emacs-config.org")))
+#+END_SRC
+
+#+RESULTS:
+| lambda | nil | (interactive) | (find-file ~/.emacs.d/emacs-config/emacs-config.org) |
+
