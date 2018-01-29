@@ -447,3 +447,39 @@
 #+RESULTS:
 | lambda | nil | (interactive) | (find-file ~/.emacs.d/emacs-config/emacs-config.org) |
 
+* pytest
+#+BEGIN_SRC emacs-lisp
+  (require 'pytest)
+#+END_SRC
+
+#+RESULTS:
+: pytest
+* Python-custom comment block with M-;
+#+BEGIN_SRC emacs-lisp
+(defun select-current-line ()
+  "Select the current line"
+  (interactive)
+ (beginning-of-line) ; move to end of line
+  (set-mark (line-end-position)))
+(defun comment-or-uncomment-line-or-region ()
+  "comment-or-uncomment-line-or-region"
+  (interactive)
+(save-excursion (if (region-active-p) (comment-dwim nil)
+  (select-current-line) (comment-dwim nil)
+  )))
+ (eval-after-load "python"
+'(define-key python-mode-map (kbd "M-;") #'comment-or-uncomment-line-or-region))
+
+#+END_SRC
+
+#+RESULTS:
+: comment-or-uncomment-line-or-region
+
+* magit-status shortcut
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
+#+RESULTS:
+: magit-status
+
