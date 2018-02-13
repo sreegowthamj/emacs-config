@@ -483,3 +483,11 @@
 #+RESULTS:
 : magit-status
 
+* Switch buffer
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<f1>")  'mode-line-other-buffer)
+#+END_SRC
+
+#+RESULTS:
+: mode-line-other-buffer
+
