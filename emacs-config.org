@@ -491,10 +491,13 @@
 #+RESULTS:
 : mode-line-other-buffer
 
-* EVIL mode 
+* EVIL mode
 #+BEGIN_SRC emacs-lisp
 (require 'evil)
-(evil-mode 1)
+(evil-mode 0)
 
 
 #+END_SRC
+
+#+RESULTS:
+
