@@ -51,7 +51,13 @@
 * cmake-ide integration
 #+BEGIN_SRC emacs-lisp
 (cmake-ide-setup)
+(setq cmake-ide-build-pool-dir "/home/sgj/.cmake-ide-build-pool")
+(setq cmake-ide-build-pool-use-persistent-naming t)
+
 #+END_SRC
+
+#+RESULTS:
+: t
 
 * irony-mode integration
 #+BEGIN_SRC emacs-lisp
@@ -133,14 +139,6 @@
 #+RESULTS:
 | flycheck-irony-setup | flycheck-mode-set-explicitly |
 
-* CMake automation with cmake-ide
-#+BEGIN_SRC emacs-lisp
-(cmake-ide-setup)
-#+END_SRC
-
-#+RESULTS:
-| cmake-ide--before-save |
-
 * Adding monokai (similar to sublime)
 #+BEGIN_SRC emacs-lisp
 (load-theme 'monokai-alt t)
@@ -187,7 +185,7 @@
 * rtags Config & Diagnostics disabled
 #+BEGIN_SRC emacs-lisp
 ;;(setq rtags-autostart-diagnostics t)
-;;(rtags-diagnostics)
+(rtags-diagnostics)
 (setq rtags-completions-enabled t)
 (rtags-enable-standard-keybindings)
 #+END_SRC
@@ -344,9 +342,9 @@
 #+END_SRC
 * rosemacs
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path "/opt/ros/lunar/share/emacs/site-lisp")
-;; or whatever your install space is + "/share/emacs/site-lisp"
-(require 'rosemacs-config)
+;; (add-to-list 'load-path "/opt/ros/lunar/share/emacs/site-lisp")
+   ;; or whatever your install space is + "/share/emacs/site-lisp"
+;; (require 'rosemacs-config)
 #+END_SRC
 * smart-mode-line with powerline theme
 #+BEGIN_SRC emacs-lisp
@@ -501,7 +499,7 @@
 
 #+RESULTS:
 
-* copy line & key bind to C-c l
+* copy line & key bind to C-x l
 #+BEGIN_SRC emacs-lisp
   (defun copy-line (arg)
     "Copy lines (as many as prefix argument) in the kill ring.

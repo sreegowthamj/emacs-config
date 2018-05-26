@@ -40,3 +40,17 @@ Archived entries from file /home/sgj/.emacs.d/emacs-config/emacs-config.org
 #+BEGIN_SRC emacs-lisp
 (require 'helm-ros)
 #+END_SRC
+
+* CMake automation with cmake-ide
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-05-25 Fri 16:33
+  :ARCHIVE_FILE: ~/.emacs.d/emacs-config/emacs-config.org
+  :ARCHIVE_CATEGORY: emacs-config
+  :END:
+#+BEGIN_SRC emacs-lisp
+(cmake-ide-setup)
+#+END_SRC
+
+#+RESULTS:
+: t
+
