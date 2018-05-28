@@ -480,7 +480,7 @@
 
 * magit-status shortcut
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "<f12>") 'magit-status)
 #+END_SRC
 
 #+RESULTS:
