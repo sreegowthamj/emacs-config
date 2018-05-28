@@ -195,7 +195,7 @@
 (setq cmake-ide-header-search-other-file nil)
 (setq cmake-ide-header-search-first-including nil)
 #+END_SRC
-* Golden Ratio enabling
+* Golden Ratio enabling [DISABLED]
 #+BEGIN_SRC emacs-lisp
 (require 'golden-ratio)
 
@@ -227,8 +227,13 @@
                                    "IELM"
                                    "eshell-mode" "dired-mode"))
 
-(golden-ratio-mode)
+;; disabling golden ratio
+;; (golden-ratio-mode)
 #+END_SRC
+
+#+RESULTS:
+: t
+
 * helm-projectile integration
 #+BEGIN_SRC emacs-lisp
 (require 'helm-projectile)
@@ -527,3 +532,30 @@
 #+RESULTS:
 : copy-line
 
+* clang-format enabling
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path 
+"/home/sgj/.emacs.d/elpa/clang-format")
+(global-set-key [C-i] 'clang-format-region)
+
+#+END_SRC
+
+#+RESULTS:
+: clang-format-region
+
+* Emacs Code Browser (ECB)
+#+BEGIN_SRC emacs-lisp
+ (add-to-list 'load-path 
+ "/home/sgj/.emacs.d/elpa/ecb-master")
+ (require 'ecb)
+
+(setq semantic-load-turn-everything-on t)
+(require 'semantic)
+;; (global-semantic-show-dirty-mode -1)
+;; (global-semantic-show-unmatched-syntax-mode -1)
+#+END_SRC
+
+#+RESULTS:
+: semantic
+
+  
