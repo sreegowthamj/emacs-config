@@ -352,20 +352,6 @@
    ;; or whatever your install space is + "/share/emacs/site-lisp"
 ;; (require 'rosemacs-config)
 #+END_SRC
-* smart-mode-line with powerline theme
-#+BEGIN_SRC emacs-lisp
-;; These two lines are just examples
-(setq sml/no-confirm-load-theme t)
-(setq powerline-arrow-shape 'curve)
-(setq powerline-default-separator-dir '(right . left))
-;; These two lines you really need.
-(setq sml/theme 'powerline)
-(sml/setup)
-#+END_SRC
-
-#+RESULTS:
-: t
-
 * Anaconda-mode
 #+BEGIN_SRC emacs-lisp
 (add-hook 'python-mode-hook 'anaconda-mode)
@@ -614,4 +600,22 @@
 
 #+RESULTS:
 | ws-butler-mode | google-set-c-style | my-flycheck-rtags-setup |
+
+* modeline : Telephone-Line
+#+BEGIN_SRC emacs-lisp
+(require 'telephone-line)
+(telephone-line-mode 1)
+
+;; reference - https://github.com/dbordak/telephone-line/blob/master/examples.org
+;; Cubed theme
+(setq telephone-line-primary-left-separator 'telephone-line-tan-left
+      telephone-line-secondary-left-separator 'telephone-line-tan-hollow-left
+      telephone-line-primary-right-separator 'telephone-line-tan-right
+      telephone-line-secondary-right-separator 'telephone-line-tan-hollow-right)
+(setq telephone-line-height 24
+      telephone-line-evil-use-short-tag t)
+#+END_SRC
+
+#+RESULTS:
+: t
 
