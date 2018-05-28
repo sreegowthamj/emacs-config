@@ -111,10 +111,11 @@
 ;; Use flycheck-pyflakes for python. Seems to work a little better.
 ;; (require 'flycheck-pyflakes)
 (add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c++-mode-hook 'flycheck-mode)
 #+END_SRC
 
 #+RESULTS:
-| flycheck-mode | irony-mode | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) |
+| flycheck-mode | maybe-cmake-project-hook | flymake-cppcheck-load | flymake-google-cpplint-load | (lambda nil (setq flycheck-clang-language-standard c++11)) | irony-mode | cmake-ide--mode-hook | (lambda nil (easy-menu-add-item nil (quote (C++)) (rtags-submenu-list))) |
 
 * Integrating rtags with flycheck
 #+BEGIN_SRC emacs-lisp
@@ -568,7 +569,6 @@
 
 * C++ coding style
 #+BEGIN_SRC emacs-lisp
-
 ;; C++ coding style
 (setq
  c-default-style "ellemtel" ;; set style to "linux"
@@ -614,3 +614,4 @@
 
 #+RESULTS:
 | ws-butler-mode | google-set-c-style | my-flycheck-rtags-setup |
+
