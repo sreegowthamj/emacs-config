@@ -499,7 +499,6 @@
 (require 'evil)
 (evil-mode 0)
 
-
 #+END_SRC
 
 #+RESULTS:
@@ -600,8 +599,18 @@
    (define-key global-map (kbd "RET") 'newline-and-indent))
 (add-hook 'after-init-hook 'my-pkg-init)
 
+;; Package: dtrt-indent 
+;; A minor mode that guesses the indentation offset originally used
+;; for creating source code files and transparently adjusts the corresponding
+;; settings in Emacs, making it more convenient to edit foreign files. 
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
+(setq dtrt-indent-verbosity 0)
+
+;; Package: ws-butler
+(require 'ws-butler)
+(add-hook 'c-mode-common-hook 'ws-butler-mode)
 #+END_SRC
 
 #+RESULTS:
-| my-pkg-init | x-wm-set-size-hint | global-company-mode |
-
+| ws-butler-mode | google-set-c-style | my-flycheck-rtags-setup |
