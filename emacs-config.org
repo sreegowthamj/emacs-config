@@ -567,4 +567,41 @@
 
 #+RESULTS:
 
-  
+* C++ coding style
+#+BEGIN_SRC emacs-lisp
+
+;; C++ coding style
+(setq
+ c-default-style "ellemtel" ;; set style to "linux"
+ )
+
+;; automatically indent when press RET
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; activate whitespace-mode to view all whitespace characters
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+
+;; show unncessary whitespace that can mess up your diff
+(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+
+;; use space to indent by default
+(setq-default indent-tabs-mode nil)
+
+;; set appearance of a tab that is represented by 4 spaces
+(setq-default tab-width 4)
+
+;; Package: clean-aindent-mode
+(require 'clean-aindent-mode)
+(add-hook 'prog-mode-hook 'clean-aindent-mode)
+(defun my-pkg-init()
+   (electric-indent-mode -1)  ; no electric indent, auto-indent is sufficient
+   (clean-aindent-mode t)
+   (setq clean-aindent-is-simple-indent t)
+   (define-key global-map (kbd "RET") 'newline-and-indent))
+(add-hook 'after-init-hook 'my-pkg-init)
+
+#+END_SRC
+
+#+RESULTS:
+| my-pkg-init | x-wm-set-size-hint | global-company-mode |
+
