@@ -15,6 +15,67 @@
 #+RESULTS:
 : t
 
+* modeline : Telephone-Line
+#+BEGIN_SRC emacs-lisp
+(defface my-red '((t (:foreground "white" :background "red"))) "")
+(defface my-orangered '((t (:foreground "white" :background "orange red"))) "")
+(defface my-orange '((t (:foreground "dim grey" :background "orange"))) "")
+(defface my-gold '((t (:foreground "dim grey" :background "gold"))) "")
+(defface my-yellow '((t (:foreground "dim grey" :background "yellow"))) "")
+(defface my-chartreuse '((t (:foreground "dim grey" :background "chartreuse"))) "")
+(defface my-green '((t (:foreground "dim grey" :background "green"))) "")
+(defface my-sgreen '((t (:foreground "white" :background "spring green"))) "")
+(defface my-cyan '((t (:foreground "dim grey" :background "cyan"))) "")
+(defface my-blue '((t (:foreground "white" :background "blue"))) "")
+(defface my-dmagenta '((t (:foreground "white" :background "dark magenta"))) "")
+(defface my-blac '((t (:foreground "white" :background "green blue"))) "")
+
+(setq telephone-line-faces
+      '((red . (my-red . my-red))
+        (ored . (my-orangered . my-orangered))
+        (orange . (my-orange . my-orange))
+        (gold . (my-gold . my-gold))
+        (yellow . (my-yellow . my-yellow))
+        (chartreuse . (my-chartreuse . my-chartreuse))
+        (green . (my-green . my-green))
+        (sgreen . (my-sgreen . my-sgreen))
+        (cyan . (my-cyan . my-cyan))
+        (blue . (my-blue . my-blue))
+        (dmagenta . (my-dmagenta . my-dmagenta))
+        (evil . telephone-line-evil-face)
+        (accent . (telephone-line-accent-active . telephone-line-accent-inactive))
+        (nil . (mode-line . mode-line-inactive))))
+
+
+(setq telephone-line-lhs
+      '((nil   . (telephone-line-evil-tag-segment))
+        (sgreen . (telephone-line-vc-segment))
+        (nil . (telephone-line-erc-modified-channels-segment))
+        (evil . (telephone-line-process-segment))
+        (evil    . (telephone-line-minor-mode-segment))
+        (nil    . (telephone-line-projectile-segment))
+        (nil   . (telephone-line-buffer-segment))))
+
+(setq telephone-line-rhs
+      '((nil . (telephone-line-misc-info-segment))
+        (sgreen . (telephone-line-major-mode-segment))
+        (nil . (telephone-line-airline-position-segment))))
+
+(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+      telephone-line-primary-right-separator 'telephone-line-cubed-right
+      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+(setq telephone-line-height 24
+      telephone-line-evil-use-short-tag t)
+
+(require 'telephone-line)
+(telephone-line-mode 1)
+
+#+END_SRC
+
+#+RESULTS:
+: t
+
 * Adding Melpa 
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -346,7 +407,7 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 #+END_SRC
-* rosemacs
+* ROS-emacs package
 #+BEGIN_SRC emacs-lisp
 ;; (add-to-list 'load-path "/opt/ros/lunar/share/emacs/site-lisp")
    ;; or whatever your install space is + "/share/emacs/site-lisp"
@@ -529,35 +590,14 @@
 #+RESULTS:
 : clang-format-region
 
-* Emacs Code Browser (ECB)
-#+BEGIN_SRC emacs-lisp
- (add-to-list 'load-path 
- "/home/sgj/.emacs.d/elpa/ecb-master")
- (require 'ecb)
-
-(setq semantic-load-turn-everything-on t)
-(require 'semantic)
-;; (global-semantic-show-dirty-mode -1)
-;; (global-semantic-show-unmatched-syntax-mode -1)
-
-;; ECB mini buffer completion not working fix - 
-;; https://github.com/ecb-home/ecb/issues/10
-(defun display-buffer-at-bottom--display-buffer-at-bottom-around (orig-fun &rest args)
-"Bugfix for ECB: cannot use display-buffer-at-bottom', calldisplay-buffer-use-some-window' instead in ECB frame."
-(if (and ecb-minor-mode (equal (selected-frame) ecb-frame))
-(apply 'display-buffer-use-some-window args)
-(apply orig-fun args)))
-(advice-add 'display-buffer-at-bottom :around #'display-buffer-at-bottom--display-buffer-at-bottom-around)
-
-#+END_SRC
-
-#+RESULTS:
-
 * C++ coding style
 #+BEGIN_SRC emacs-lisp
 ;; C++ coding style
 (setq
  c-default-style "ellemtel" ;; set style to "linux"
+ )
+(setq
+ c++-default-style "ellemtel" ;; set style to "linux"
  )
 
 ;; automatically indent when press RET
@@ -601,21 +641,26 @@
 #+RESULTS:
 | ws-butler-mode | google-set-c-style | my-flycheck-rtags-setup |
 
-* modeline : Telephone-Line
+* git-wip package
 #+BEGIN_SRC emacs-lisp
-(require 'telephone-line)
-(telephone-line-mode 1)
-
-;; reference - https://github.com/dbordak/telephone-line/blob/master/examples.org
-;; Cubed theme
-(setq telephone-line-primary-left-separator 'telephone-line-tan-left
-      telephone-line-secondary-left-separator 'telephone-line-tan-hollow-left
-      telephone-line-primary-right-separator 'telephone-line-tan-right
-      telephone-line-secondary-right-separator 'telephone-line-tan-hollow-right)
-(setq telephone-line-height 24
-      telephone-line-evil-use-short-tag t)
+;; test 2
+;; Need to add git-wip binary to PATH variable
+(load "/home/sgj/.emacs.d/non-elpa/git-wip/emacs/git-wip.el")
+(load "/home/sgj/.emacs.d/non-elpa/git-wip/emacs/git-wip-mode.el")
+(require 'git-wip-mode)
+(git-wip-mode 1)
+(require 'git-wip-timemachine)
+(git-wip-timemachine-mode 1)
 #+END_SRC
 
 #+RESULTS:
 : t
+
+* rtags-find-symbol-at-point
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
+#+END_SRC
+
+#+RESULTS:
+: rtags-find-symbol-at-point
 

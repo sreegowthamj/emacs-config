@@ -91,3 +91,34 @@ Archived entries from file /home/sgj/.emacs.d/emacs-config/emacs-config.org
 #+RESULTS:
 : t
 
+
+* Emacs Code Browser (ECB)
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-05-29 Tue 18:20
+  :ARCHIVE_FILE: ~/.emacs.d/emacs-config/emacs-config.org
+  :ARCHIVE_CATEGORY: emacs-config
+  :END:
+#+BEGIN_SRC emacs-lisp
+ (add-to-list 'load-path 
+ "/home/sgj/.emacs.d/elpa/ecb-master")
+ (require 'ecb)
+
+(setq semantic-load-turn-everything-on t)
+(require 'semantic)
+;; (global-semantic-show-dirty-mode -1)
+;; (global-semantic-show-unmatched-syntax-mode -1)
+
+;; ECB mini buffer completion not working fix - 
+;; https://github.com/ecb-home/ecb/issues/10
+
+(defun display-buffer-at-bottom--display-buffer-at-bottom-around (orig-fun &rest args)
+"Bugfix for ECB: cannot use display-buffer-at-bottom', calldisplay-buffer-use-some-window' instead in ECB frame."
+(if (and ecb-minor-mode (equal (selected-frame) ecb-frame))
+(apply 'display-buffer-use-some-window args)
+(apply orig-fun args)))
+(advice-add 'display-buffer-at-bottom :around #'display-buffer-at-bottom--display-buffer-at-bottom-around)
+
+#+END_SRC
+
+#+RESULTS:
+
