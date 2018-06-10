@@ -76,7 +76,7 @@
 #+RESULTS:
 : t
 
-* Adding Melpa 
+* Adding Melpa
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (package-initialize)
@@ -204,19 +204,19 @@
 * Adding monokai (similar to sublime)
 #+BEGIN_SRC emacs-lisp
 (load-theme 'monokai-alt t)
-#+END_SRC 
+#+END_SRC
 * Projectile
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 #+END_SRC
 * Projectile with speedbar
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp
 (require 'projectile-speedbar)
 #+END_SRC
 * Neotree project browser
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp
 (require 'neotree)
 #+END_SRC
 * Neotree Projectile Integration
@@ -236,7 +236,7 @@
  (global-set-key [f8] 'neotree-project-dir)
 #+END_SRC
 * magit keyboard shortcuts
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-g M-s") 'magit-status)
 (global-set-key (kbd "M-g M-c") 'magit-checkout)
 #+END_SRC
@@ -251,7 +251,7 @@
 (setq rtags-completions-enabled t)
 (rtags-enable-standard-keybindings)
 #+END_SRC
-* make opening headers fast 
+* make opening headers fast
 #+BEGIN_SRC emacs-lisp
 ;; fudged from https://github.com/atilaneves/cmake-ide/issues/59
 (setq cmake-ide-header-search-other-file nil)
@@ -348,7 +348,7 @@
 (global-set-key (kbd "C-x C-g C-p") 'next-line)
 #+END_SRC
 * Org-mode latex integration
-#+BEGIN_SRC emacs-lisp 
+#+BEGIN_SRC emacs-lisp
 (require 'ox-latex)
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
@@ -450,10 +450,10 @@
 * multiple-cursors
 #+BEGIN_SRC emacs-lisp
 (require 'multiple-cursors)
-;; When you have an active region that spans multiple lines, 
+;; When you have an active region that spans multiple lines,
 ;; the following will add a cursor to each line:
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; When you want to add multiple cursors not based on continuous lines, 
+;; When you want to add multiple cursors not based on continuous lines,
 ;; but based on keywords in the buffer, use:
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -581,7 +581,7 @@
 
 * clang-format enabling
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path 
+(add-to-list 'load-path
 "/home/sgj/.emacs.d/elpa/clang-format")
 (global-set-key [C-i] 'clang-format-region)
 
@@ -625,10 +625,10 @@
    (define-key global-map (kbd "RET") 'newline-and-indent))
 (add-hook 'after-init-hook 'my-pkg-init)
 
-;; Package: dtrt-indent 
+;; Package: dtrt-indent
 ;; A minor mode that guesses the indentation offset originally used
 ;; for creating source code files and transparently adjusts the corresponding
-;; settings in Emacs, making it more convenient to edit foreign files. 
+;; settings in Emacs, making it more convenient to edit foreign files.
 (require 'dtrt-indent)
 (dtrt-indent-mode 1)
 (setq dtrt-indent-verbosity 0)
@@ -663,4 +663,24 @@
 
 #+RESULTS:
 : rtags-find-symbol-at-point
+* track recently opened files
+#+BEGIN_SRC emacs-lisp
+(recentf-mode 1)
+(setq recentf-max-saved-items 300)
 
+(defun ido-choose-from-recentf ()
+  "Use ido to select a recently opened file from the `recentf-list'"
+  (interactive)
+  (find-file (ido-completing-read "Open file: " recentf-list nil t)))
+
+(global-set-key [(meta f9)] 'ido-choose-from-recentf)
+
+#+END_SRC
+
+#+RESULTS:
+: ido-choose-from-recentf
+
+* F5 to load todo.org file
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<f5>") (lambda() (interactive)(find-file "/home/sgj/todo/todo.org")))
+#+END_SRC
