@@ -14,15 +14,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ (quote
+  ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(ecb-options-version "2.50")
  '(inhibit-startup-screen t)
  '(initial-buffer-choice "~/todo/todo.org")
  '(magit-diff-arguments (quote ("--no-ext-diff" "--stat")))
  '(package-selected-packages
-   (quote
-    (git-wip-timemachine telephone-line lsp-ui lsp-mode ws-butler dtrt-indent clean-aindent-mode evil pytest flymd yasnippet-snippets multiple-cursors icicles company-anaconda anaconda-mode helm-ros smart-mode-line projectile-speedbar neotree monokai-alt-theme magit kooten-theme helm-rtags helm-projectile helm-flymake google-c-style golden-ratio flymake-google-cpplint flymake-cppcheck flycheck-rtags flycheck-irony company-shell company-rtags company-irony-c-headers company-irony company-c-headers cmake-project cmake-ide auctex afternoon-theme))))
+ (quote
+  (clang-format git-wip-timemachine telephone-line lsp-ui lsp-mode ws-butler dtrt-indent clean-aindent-mode evil pytest flymd yasnippet-snippets multiple-cursors icicles company-anaconda anaconda-mode helm-ros smart-mode-line projectile-speedbar neotree monokai-alt-theme magit kooten-theme helm-rtags helm-projectile helm-flymake google-c-style golden-ratio flymake-google-cpplint flymake-cppcheck flycheck-rtags flycheck-irony company-shell company-rtags company-irony-c-headers company-irony company-c-headers cmake-project cmake-ide auctex afternoon-theme))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

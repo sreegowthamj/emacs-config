@@ -61,10 +61,10 @@
         (sgreen . (telephone-line-major-mode-segment))
         (nil . (telephone-line-airline-position-segment))))
 
-(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
-      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
-      telephone-line-primary-right-separator 'telephone-line-cubed-right
-      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+(setq telephone-line-primary-left-separator 'telephone-line-identity-left
+      telephone-line-secondary-left-separator 'telephone-line-identity-left
+      telephone-line-primary-right-separator 'telephone-line-identity-right
+      telephone-line-secondary-right-separator 'telephone-line-identity-hollow-right)
 (setq telephone-line-height 24
       telephone-line-evil-use-short-tag t)
 
@@ -246,7 +246,7 @@
 #+END_SRC
 * rtags Config & Diagnostics disabled
 #+BEGIN_SRC emacs-lisp
-;;(setq rtags-autostart-diagnostics t)
+;;(setq rtags-autostart-diagnostics )
 (rtags-diagnostics)
 (setq rtags-completions-enabled t)
 (rtags-enable-standard-keybindings)
@@ -581,65 +581,21 @@
 
 * clang-format enabling
 #+BEGIN_SRC emacs-lisp
+(defun load-my-clang-format-config () 
+"load my clang format settings"
+(interactive)
+(clang-format-buffer nil "/home/sgj/workspace/gaze-vergence-control/src/visual_odometry/.clang-format" ))
+
 (add-to-list 'load-path
 "/home/sgj/.emacs.d/elpa/clang-format")
-(global-set-key [C-i] 'clang-format-region)
+(require 'clang-format)
+(global-set-key (kbd "C-M-i") 'load-my-clang-format-config)
+;; (setq clang-format-style-option "Mozilla")
 
 #+END_SRC
 
 #+RESULTS:
-: clang-format-region
-
-* C++ coding style
-#+BEGIN_SRC emacs-lisp
-;; C++ coding style
-(setq
- c-default-style "ellemtel" ;; set style to "linux"
- )
-(setq
- c++-default-style "ellemtel" ;; set style to "linux"
- )
-
-;; automatically indent when press RET
-(global-set-key (kbd "RET") 'newline-and-indent)
-
-;; activate whitespace-mode to view all whitespace characters
-(global-set-key (kbd "C-c w") 'whitespace-mode)
-
-;; show unncessary whitespace that can mess up your diff
-(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
-
-;; use space to indent by default
-(setq-default indent-tabs-mode nil)
-
-;; set appearance of a tab that is represented by 4 spaces
-(setq-default tab-width 4)
-
-;; Package: clean-aindent-mode
-(require 'clean-aindent-mode)
-(add-hook 'prog-mode-hook 'clean-aindent-mode)
-(defun my-pkg-init()
-   (electric-indent-mode -1)  ; no electric indent, auto-indent is sufficient
-   (clean-aindent-mode t)
-   (setq clean-aindent-is-simple-indent t)
-   (define-key global-map (kbd "RET") 'newline-and-indent))
-(add-hook 'after-init-hook 'my-pkg-init)
-
-;; Package: dtrt-indent
-;; A minor mode that guesses the indentation offset originally used
-;; for creating source code files and transparently adjusts the corresponding
-;; settings in Emacs, making it more convenient to edit foreign files.
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
-(setq dtrt-indent-verbosity 0)
-
-;; Package: ws-butler
-(require 'ws-butler)
-(add-hook 'c-mode-common-hook 'ws-butler-mode)
-#+END_SRC
-
-#+RESULTS:
-| ws-butler-mode | google-set-c-style | my-flycheck-rtags-setup |
+: load-my-clang-format-config
 
 * git-wip package
 #+BEGIN_SRC emacs-lisp
@@ -682,5 +638,37 @@
 
 * F5 to load todo.org file
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "<f5>") (lambda() (interactive)(find-file "/home/sgj/todo/todo.org")))
+(global-set-key (kbd "<f5>") 
+  (lambda() 
+    (interactive)
+    (find-file "/home/sgj/todo/todo.org")
+  )
+)
 #+END_SRC
+* switch buffer with ctrl-page up/down keys
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<C-prior>") 'previous-buffer)
+(global-set-key (kbd "<C-next>") 'next-buffer)
+
+#+END_SRC
+
+#+RESULTS:
+: next-buffer
+
+* goto prev mouse position
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-p") 'pop-global-mark)
+
+#+END_SRC
+
+#+RESULTS:
+: pop-global-mark
+
+* set cursor colour to white
+#+BEGIN_SRC emacs-lisp
+; Set cursor color to yellow
+(set-cursor-color "#fff111")
+#+END_SRC
+
+#+RESULTS:
+

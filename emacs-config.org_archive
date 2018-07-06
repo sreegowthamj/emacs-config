@@ -122,3 +122,60 @@ Archived entries from file /home/sgj/.emacs.d/emacs-config/emacs-config.org
 
 #+RESULTS:
 
+
+* C++ coding style
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2018-07-05 Thu 18:31
+  :ARCHIVE_FILE: ~/.emacs.d/emacs-config/emacs-config.org
+  :ARCHIVE_CATEGORY: emacs-config
+  :END:
+#+BEGIN_SRC emacs-lisp
+;; C++ coding style
+(setq
+ c-default-style "ellemtel" ;; set style to "linux"
+ )
+(setq
+ c++-default-style "ellemtel" ;; set style to "linux"
+ )
+
+;; automatically indent when press RET
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; activate whitespace-mode to view all whitespace characters
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+
+;; show unncessary whitespace that can mess up your diff
+(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+
+;; use space to indent by default
+(setq-default indent-tabs-mode nil)
+
+;; set appearance of a tab that is represented by 4 spaces
+(setq-default tab-width 4)
+
+;; Package: clean-aindent-mode
+(require 'clean-aindent-mode)
+(add-hook 'prog-mode-hook 'clean-aindent-mode)
+(defun my-pkg-init()
+   (electric-indent-mode -1)  ; no electric indent, auto-indent is sufficient
+   (clean-aindent-mode t)
+   (setq clean-aindent-is-simple-indent t)
+   (define-key global-map (kbd "RET") 'newline-and-indent))
+(add-hook 'after-init-hook 'my-pkg-init)
+
+;; Package: dtrt-indent
+;; A minor mode that guesses the indentation offset originally used
+;; for creating source code files and transparently adjusts the corresponding
+;; settings in Emacs, making it more convenient to edit foreign files.
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
+(setq dtrt-indent-verbosity 0)
+
+;; Package: ws-butler
+(require 'ws-butler)
+(add-hook 'c-mode-common-hook 'ws-butler-mode)
+#+END_SRC
+
+#+RESULTS:
+| ws-butler-mode | google-set-c-style | my-flycheck-rtags-setup |
+
