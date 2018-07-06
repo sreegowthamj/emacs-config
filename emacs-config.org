@@ -1,4 +1,13 @@
 #+LaTeX_CLASS: koma-report
+* emacs-config-dir variable setting
+#+BEGIN_SRC emacs-lisp
+(defconst emacs-config-dir "/home/sgj/.emacs.d/emacs-config")
+
+#+END_SRC
+
+#+RESULTS:
+: emacs-config-dir
+
 * AUCTex Config
 #+BEGIN_SRC emacs-lisp
 (setq TeX-auto-save t)
@@ -583,14 +592,12 @@
 #+BEGIN_SRC emacs-lisp
 (defun load-my-clang-format-config () 
 "load my clang format settings"
-(interactive)
-(clang-format-buffer nil "/home/sgj/workspace/gaze-vergence-control/src/visual_odometry/.clang-format" ))
-
+  (interactive)
+  (clang-format-buffer nil emacs-config-dir ))
 (add-to-list 'load-path
-"/home/sgj/.emacs.d/elpa/clang-format")
+  "/home/sgj/.emacs.d/elpa/clang-format")
 (require 'clang-format)
 (global-set-key (kbd "C-M-i") 'load-my-clang-format-config)
-;; (setq clang-format-style-option "Mozilla")
 
 #+END_SRC
 
@@ -671,4 +678,14 @@
 #+END_SRC
 
 #+RESULTS:
+
+* cpp syntax highlighting
+#+BEGIN_SRC emacs-lisp
+(require 'modern-cpp-font-lock)
+(add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
+
+#+END_SRC
+
+#+RESULTS:
+| modern-c++-font-lock-mode | maybe-cmake-project-hook | flymake-cppcheck-load | flymake-google-cpplint-load | flycheck-mode | (lambda nil (setq flycheck-clang-language-standard c++11)) | irony-mode | cmake-ide--mode-hook | (lambda nil (easy-menu-add-item nil (quote (C++)) (rtags-submenu-list))) |
 
