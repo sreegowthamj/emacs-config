@@ -59,11 +59,13 @@
 (setq telephone-line-lhs
       '((nil   . (telephone-line-evil-tag-segment))
         (sgreen . (telephone-line-vc-segment))
-        (nil . (telephone-line-erc-modified-channels-segment))
-        (evil . (telephone-line-process-segment))
-        (evil    . (telephone-line-minor-mode-segment))
+        (blue . (telephone-line-erc-modified-channels-segment))
+        (sgreen  . (telephone-line-process-segment))
         (nil    . (telephone-line-projectile-segment))
-        (nil   . (telephone-line-buffer-segment))))
+        (nil   . (telephone-line-buffer-segment))
+        (nil    . (telephone-line-minor-mode-segment))
+        ))
+
 
 (setq telephone-line-rhs
       '((nil . (telephone-line-misc-info-segment))
@@ -676,7 +678,7 @@
 #+RESULTS:
 : pop-global-mark
 
-* set cursor colour to white
+* set cursor colour to yellow
 #+BEGIN_SRC emacs-lisp
 ; Set cursor color to yellow
 (set-cursor-color "#fff111")
